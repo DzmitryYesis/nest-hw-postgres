@@ -23,7 +23,7 @@ import { UpdateTokensUseCase } from './application/use-cases/update-tokens.use-c
 import { DeleteDeviceUseCase } from './application/use-cases/delete-device.use-case';
 import { DeleteDevicesExcludeCurrentUseCase } from './application/use-cases/delete-devices-exclude-current.use-case';
 
-import { ThrottlerModule } from '@nestjs/throttler';
+//import { ThrottlerModule } from '@nestjs/throttler';
 
 const useCases = [
   CreateUserUseCase,
@@ -44,12 +44,12 @@ const useCases = [
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     MongooseModule.forFeature([{ name: Session.name, schema: SessionSchema }]),
     //TODO delete for e2e tests
-    ThrottlerModule.forRoot([
+    /*ThrottlerModule.forRoot([
       {
         ttl: 10000,
         limit: 5,
       },
-    ]),
+    ]),*/
     UtilitiesApplicationModule,
     CqrsModule,
   ],

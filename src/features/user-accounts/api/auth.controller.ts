@@ -23,7 +23,7 @@ import {
 import { ExtractUserFromRequest, BearerAuthGuard } from '../../../core';
 import { UsersQueryRepository } from '../infrastructure';
 import { SETTINGS } from '../../../settings';
-import { SkipThrottle, ThrottlerGuard } from '@nestjs/throttler';
+//import { SkipThrottle, ThrottlerGuard } from '@nestjs/throttler';
 import { RefreshAuthGuard } from '../../../core/guards/refresh-guard/refresh-token.guard';
 import { CommandBus } from '@nestjs/cqrs';
 import { CreateUserCommand } from '../application/use-cases/create-user.use-case';
@@ -36,7 +36,7 @@ import { LogoutCommand } from '../application/use-cases/logout.use-case';
 import { UpdateTokensCommand } from '../application/use-cases/update-tokens.use-case';
 
 //TODO delete for e2e tests
-@UseGuards(ThrottlerGuard)
+//@UseGuards(ThrottlerGuard)
 @Controller(AUTH_API_PATH.ROOT_URL)
 export class AuthController {
   constructor(
@@ -47,7 +47,7 @@ export class AuthController {
   @Get(AUTH_API_PATH.ME)
   @UseGuards(BearerAuthGuard)
   //TODO delete for e2e tests
-  @SkipThrottle()
+  //@SkipThrottle()
   async getUserInfo(
     @ExtractUserFromRequest() userId: string,
   ): Promise<UserInfoViewDto> {
@@ -119,7 +119,7 @@ export class AuthController {
   @Post(AUTH_API_PATH.REFRESH_TOKEN)
   @HttpCode(HttpStatus.OK)
   //TODO delete for e2e tests
-  @SkipThrottle()
+  //@SkipThrottle()
   async updateTokens(@Req() req: Request, @Res() res: Response): Promise<void> {
     const { accessToken, refreshToken } = await this.commandBus.execute(
       new UpdateTokensCommand(
@@ -139,7 +139,7 @@ export class AuthController {
   @Post(AUTH_API_PATH.LOGOUT)
   @HttpCode(HttpStatus.NO_CONTENT)
   //TODO delete for e2e tests
-  @SkipThrottle()
+  //@SkipThrottle()
   async logout(@Req() req: Request): Promise<void> {
     return await this.commandBus.execute(
       new LogoutCommand(
