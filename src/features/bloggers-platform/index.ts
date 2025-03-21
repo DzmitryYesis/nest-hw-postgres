@@ -1,0 +1,42 @@
+export * from './bloggers-platform.module';
+export {
+  BlogRepository,
+  BlogQueryRepository,
+  BlogController,
+  PostForBlogInputDto,
+  BlogViewDto,
+  BlogInputDto,
+  CreateBlogDomainDto,
+  BlogsQueryParams,
+  Blog,
+  BlogSchema,
+  BlogDocument,
+  BlogModelType,
+} from './blog';
+export {
+  PostRepository,
+  PostQueryRepository,
+  PostController,
+  PostViewDto,
+  PostsQueryParams,
+  PostInputDto,
+  CreatePostDomainDto,
+  UpdatePostDomainDto,
+  NewestLikeViewDto,
+  Post,
+  PostSchema,
+  PostDocument,
+  PostModelType,
+} from './post';
+export {
+  CommentController,
+  CommentRepository,
+  CommentQueryRepository,
+  CreateCommentDomainDto,
+  Comment,
+  CommentDocument,
+  CommentSchema,
+  CommentModelType,
+  CommentatorInfo,
+  CommentatorInfoSchema,
+} from './comment';
